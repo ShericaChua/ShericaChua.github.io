@@ -2,10 +2,12 @@
 title: "NM2207- Final Submission"
 ---
 
-# San Francisco Trees
+# San Francisco's Changing Tree Landscape: A Decade of Growth and Diversity
 
-Have you seen **San Francisco Trees?!** Let **ME**.... **SHOW YOU** more about it!
+Have you heard of **San Francisco Trees?!** Let **ME**.... **TELL YOU** more about it!
 
-## Data Analysis
+## How has the tree population in San Francisco changed over the past decade?
 
-## Research/About
+> According to studies on urban forestry and sustainability, the state of a city's tree population can significantly impact the environment, air quality, and overall well-being of its residents. For instance, research by the United Nations has shown that urban green spaces, including trees, are vital for mitigating climate change. This question is important because understanding how San Francisco's tree population has evolved is crucial for assessing the city's progress in environmental sustainability and urban planning, which has wide-reaching effects on residents' quality of life.
+
+## Dataset
