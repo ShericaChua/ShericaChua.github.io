@@ -22,7 +22,9 @@ My passion for aesthetics and user-centered creativity has driven me to pursue a
 
 # Others
 
-<iframe height="400" width="100%" frameborder="no" src="https://18en4g-chua-chua.shinyapps.io/MyShinyApp/"> </iframe>
+<iframe height="400" width="100%" frameborder="no" src="https://18en4g-chua-chua.shinyapps.io/MyShinyApp/">
+
+</iframe>
 
 ## Singapore Polytechnic
 
