@@ -12,61 +12,170 @@ Have you heard of **San Francisco Trees?!** Let **ME**.... **TELL YOU** more abo
 
 ## Dataset
 
-```{r, eval=TRUE,echo=TRUE}
-# Enter code here
+```{r, eval=TRUE,echo=FALSE}
 
 library(tidyverse)
-library(here)
-library(tidytuesdaymeta)
-library(pryr)
-library(visdat)
-library(skimr)
+library(ggmap)
+library(osmdata)
+library(extrafont)
+library(sf)
 library(lubridate)
-library(leaflet)
+library(viridis)
+library(patchwork)
+library(ggtext)
 
-create_tidytuesday_folder()
+loadfonts(device = "win")
 
-raw_df <- read_csv(here::here("2020", "2020-01-28", "Street_Tree_Map.csv"),
-                   col_types = 
-                   cols(
-                     TreeID = col_double(),
-                     qLegalStatus = col_character(),
-                     qSpecies = col_character(),
-                     qAddress = col_character(),
-                     SiteOrder = col_double(),
-                     qSiteInfo = col_character(),
-                     PlantType = col_character(),
-                     qCaretaker = col_character(),
-                     qCareAssistant = col_character(),
-                     PlantDate = col_character(),
-                     DBH = col_double(),
-                     PlotSize = col_character(),
-                     PermitNotes = col_character(),
-                     XCoord = col_double(),
-                     YCoord = col_double(),
-                     Latitude = col_double(),
-                     Longitude = col_double(),
-                     Location = col_character()
-                   )) %>% 
-  janitor::clean_names()
+sf_trees <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-28/sf_trees.csv')
 
-small_df <- raw_df %>% 
-  select(-x_coord,-y_coord,-q_care_assistant, -permit_notes) %>% 
-  filter(plant_type != "Landscaping") %>% 
-  select(-plant_type) %>% 
-  separate(plant_date, into = c("date", "time"), sep = " ") %>% 
-  mutate(date = parse_date(date, "%m/%d/%Y")) %>% 
-  select(-time, -location) %>% 
-  arrange(date) %>% 
-  rename(legal_status = q_legal_status,
-         species = q_species,
-         address = q_address,
-         site_info = q_site_info,
-         caretaker = q_caretaker)
+roads <- getbb("San Francisco") %>% 
+  opq() %>% 
+  add_osm_feature("highway") %>% 
+  osmdata_sf()
 
-small_df %>% skimr::skim()
+coast <- getbb("San Francisco") %>% 
+  opq() %>% 
+  add_osm_feature(key = "natural", value = "coastline") %>%
+  osmdata_sf()
 
-small_df %>% 
-  write_csv(here::here("2020", "2020-01-28", "sf_trees.csv"))
+sf_trees %>%
+  summarise(nb_species = length(unique(species)))
+
+# Vector of years to fill the gap in the dataset
+
+years <- tibble(year = seq(1954,2019,1), nb = 0)
+
+# Number of different species per year
+
+p1 <- sf_trees %>%
+  mutate(year = year(date)) %>%
+  filter(year != 2020) %>%
+  group_by(year) %>%
+  summarise(nb_species = length(unique(species))) %>%
+  right_join(years) %>%
+  mutate(nb_species = ifelse(is.na(nb_species), 0, nb_species)) %>% 
+  ggplot(aes(year, nb_species)) +
+  geom_col(fill = "#6DD19C", color = "#effdee", size = 1) +
+  scale_x_continuous(limits=c(1955,2020))+
+  labs(title= "Number of different specie planted each year",
+       y = "# different specie") +
+  theme(panel.background = element_rect(fill = "white"),
+        plot.background = element_rect(fill = "white", color = NA),
+        legend.background = element_rect(fill = "white"),
+        plot.title = element_text(color = "#555555", hjust = 0.5),
+        panel.grid.major =  element_line(color = "#555555", linetype = "dashed"),
+        panel.grid.minor =  element_line(color = "#555555", linetype = "dotted"),
+        axis.text = element_text(color = "#555555"),
+        axis.title = element_text(color = "#555555"),
+        axis.title.x = element_blank())
+
+
+# Number of trees planted each year
+
+p2 <- sf_trees %>%
+  mutate(year = year(date)) %>%
+  filter(year != 2020 ) %>%
+  filter(!is.na(year)) %>%
+  group_by(year) %>%
+  summarise(nb_trees = n()) %>% 
+  right_join(years) %>%
+  mutate(nb_trees = ifelse(is.na(nb_trees), 0, nb_trees)) %>%
+  ggplot(aes(year, nb_trees)) +
+  geom_line(color = "#6DD19C", size = 1) +
+  scale_x_continuous(limits=c(1955,2020))+
+  labs(title= "Number of trees planted each year",
+       y = "number of trees") +
+  theme(panel.background = element_rect(fill = "white"),
+        plot.background = element_rect(fill = "white", color = NA),
+        legend.background = element_rect(fill = "white"),
+        plot.title = element_text(color = "#555555", hjust = 0.5),
+        panel.grid.major =  element_line(color = "#555555", linetype = "dashed"),
+        panel.grid.minor =  element_line(color = "#555555", linetype = "dotted"),
+        axis.text = element_text(color = "#555555"),
+        axis.title = element_text(color = "#555555"),
+        axis.title.x = element_blank())
+
+
+patchwork <- ( p1 / p2 )
+
+patchwork + plot_annotation(title = "San Francisco Trees",
+                            subtitle = "Evolution of the number of trees & species.",
+                            theme = theme(plot.background = element_rect(fill = "white"),
+                                        plot.title = element_text(color = "#555555", size = 18, hjust = 0.5),
+                                        plot.subtitle = element_text(color = "#555555", size = 14, hjust = 0.5),
+                                        plot.caption = element_text(color = "#555555", hjust = 1),
+                                        panel.background = element_rect(fill = "white")))+
+            plot_layout(nrow = 2, heights = c(0.05, 5))
+
 
 ```
+
+
+```{r, eval=TRUE,echo=FALSE}
+library(tidyverse)
+library(sf)
+
+theme_set(theme_light())
+
+sf_trees_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-28/sf_trees.csv')
+
+sf_trees <- sf_trees_raw %>%
+  # 1. Remove outliers
+  filter(longitude > -130,
+         between(latitude, 37.6, 40)) %>%
+  # 2. Make missing values explicit
+  mutate(species = ifelse(species %in% c("Tree(s) ::", "::"), NA_character_, species)) %>%
+  # 3. Separate species into scientific and common names
+  separate(species,
+           into = c("science_name", "common_name"),
+           sep = "::") %>%
+  # Get rid of whitespace that occurs after separation
+  mutate_at(vars(science_name, common_name), str_squish) %>%
+  # 4. Use scientific name for missing common names
+  mutate(common_name = ifelse(common_name == "", science_name, common_name))
+
+# 1. Create a temp directory and download ZIP file from US Census
+temp_download <- tempfile()
+download.file("https://www2.census.gov/geo/tiger/TIGER2017//ROADS/tl_2017_06075_roads.zip", temp_download)
+
+# 2. Create a temp directory to unzip the file into
+temp_unzip <- tempfile()
+unzip(temp_download, exdir = temp_unzip)
+
+# 3. Read the unzipped shapefile from the temporary filepath
+sf_roads <- read_sf(paste0(file.path(temp_unzip), "/tl_2017_06075_roads.shp"))
+
+sf_trees %>%
+  mutate(
+    common_name = ifelse(
+      common_name == "Indian Laurel Fig Tree 'Green Gem'",
+      "Indian Laurel Fig",
+      common_name
+    ),
+    common_name = fct_lump(common_name, 9)
+  ) %>%
+  filter(!is.na(common_name), common_name != "Other") %>%
+  add_count(common_name, name = "tree_count") %>%
+  mutate(common_name = fct_reorder(common_name,-tree_count)) %>%
+  ggplot() +
+  geom_sf(data = sf_roads, col = "grey90", alpha = 0.5) +
+  geom_point(
+    aes(longitude, latitude),
+    shape = ".",
+    alpha = 0.5,
+    col = "#6DD19C"
+  ) +
+  facet_wrap( ~ common_name) +
+  coord_sf() +
+  labs(title = "Where are San Francisco's trees?",
+       subtitle = "Showing the nine most common tree species") +
+  theme_void() +
+  theme(
+    plot.subtitle = element_text(margin = margin(b = 4, unit = "pt")),
+    strip.text = element_text(size = 8, margin = margin(
+      t = 2, b = 2, unit = "pt"
+    ))
+  )
+
+```
+
