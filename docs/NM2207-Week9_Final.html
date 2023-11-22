@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>designbysc - NM2207- Final Submission</title>
+<title>designbysc – NM2207- Final Submission</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,7 +111,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#san-franciscos-changing-tree-landscape-a-decade-of-growth-and-diversity" id="toc-san-franciscos-changing-tree-landscape-a-decade-of-growth-and-diversity" class="nav-link active" data-scroll-target="#san-franciscos-changing-tree-landscape-a-decade-of-growth-and-diversity">San Francisco’s Changing Tree Landscape: A Decade of Growth and Diversity</a>
   <ul class="collapse">
   <li><a href="#how-has-the-tree-population-in-san-francisco-changed-over-the-past-decade" id="toc-how-has-the-tree-population-in-san-francisco-changed-over-the-past-decade" class="nav-link" data-scroll-target="#how-has-the-tree-population-in-san-francisco-changed-over-the-past-decade">How has the tree population in San Francisco changed over the past decade?</a></li>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  </ul></li>
+  <li><a href="#why-is-it-important-to-address-this-question" id="toc-why-is-it-important-to-address-this-question" class="nav-link" data-scroll-target="#why-is-it-important-to-address-this-question">Why is it important to address this question?</a>
+  <ul class="collapse">
+  <li><a href="#findings-about-san-francisco-trees" id="toc-findings-about-san-francisco-trees" class="nav-link" data-scroll-target="#findings-about-san-francisco-trees">Findings about San Francisco Trees</a></li>
+  </ul></li>
+  <li><a href="#graphs-on-the-trees-populations-and-planting-efforts" id="toc-graphs-on-the-trees-populations-and-planting-efforts" class="nav-link" data-scroll-target="#graphs-on-the-trees-populations-and-planting-efforts">Graphs on the trees populations and planting efforts</a></li>
+  <li><a href="#identifying-the-most-common-species-provides-valuable-information-on-the-dominant-types-of-trees-in-san-francisco" id="toc-identifying-the-most-common-species-provides-valuable-information-on-the-dominant-types-of-trees-in-san-francisco" class="nav-link" data-scroll-target="#identifying-the-most-common-species-provides-valuable-information-on-the-dominant-types-of-trees-in-san-francisco">Identifying the most common species provides valuable information on the dominant types of trees in San Francisco</a>
+  <ul class="collapse">
+  <li><a href="#san-francisos-tree-mapping" id="toc-san-francisos-tree-mapping" class="nav-link" data-scroll-target="#san-francisos-tree-mapping">San Franciso’s Tree Mapping</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -145,111 +153,64 @@ ul.task-list li input[type="checkbox"] {
 <p>According to studies on urban forestry and sustainability, the state of a city’s tree population can significantly impact the environment, air quality, and overall well-being of its residents. For instance, research by the United Nations has shown that urban green spaces, including trees, are vital for mitigating climate change. This question is important because understanding how San Francisco’s tree population has evolved is crucial for assessing the city’s progress in environmental sustainability and urban planning, which has wide-reaching effects on residents’ quality of life.</p>
 </blockquote>
 </section>
-<section id="dataset" class="level2">
-<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+</section>
+<section id="why-is-it-important-to-address-this-question" class="level1">
+<h1>Why is it important to address this question?</h1>
+<blockquote class="blockquote">
+<p>It is important to address this question because the condition and evolution of a city’s tree population have direct implications for environmental sustainability, air quality, and residents’ quality of life. Understanding these changes allows for informed urban planning, conservation efforts, and assessing progress toward climate and environmental goals.</p>
+</blockquote>
+<section id="findings-about-san-francisco-trees" class="level2">
+<h2 class="anchored" data-anchor-id="findings-about-san-francisco-trees">Findings about San Francisco Trees</h2>
+</section>
+</section>
+<section id="graphs-on-the-trees-populations-and-planting-efforts" class="level1">
+<h1>Graphs on the trees populations and planting efforts</h1>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
-ℹ Google's Terms of Service: &lt;https://mapsplatform.google.com&gt;
-ℹ Please cite ggmap if you use it! Use `citation("ggmap")` for details.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'osmdata' was built under R version 4.3.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Data (c) OpenStreetMap contributors, ODbL 1.0. https://www.openstreetmap.org/copyright
-Registering fonts with R</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'sf' was built under R version 4.3.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Linking to GEOS 3.11.2, GDAL 3.7.2, PROJ 9.3.0; sf_use_s2() is TRUE</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'viridis' was built under R version 4.3.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: viridisLite</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'patchwork' was built under R version 4.3.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggtext' was built under R version 4.3.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 192987 Columns: 12
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (6): legal_status, species, address, site_info, caretaker, plot_size
-dbl  (5): tree_id, site_order, dbh, latitude, longitude
-date (1): date
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   nb_species
        &lt;int&gt;
 1        571</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Joining with `by = join_by(year)`</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Joining with `by = join_by(year)`</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 rows containing missing values (`geom_col()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values (`geom_line()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="NM2207-Week9_Final_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>In graph above, the number of trees planted in San Francisco kept increasing from the <span style="color:#feb24c">70’s</span> to the end of the <span style="color:#feb24c">90’s</span>. This period showed an increase of the number of different species planted each year, with less than <span style="color:#00d400">50</span> to about <span style="color:#00d400">150</span>, with the maximum of <span style="color:#00d400">173 different species</span> in <span style="color:#feb24c">2008</span>, and <span style="color:#00d400">4388 trees planted</span>. The top graph shows the evolution of the number of species planted each year, while the bottom one shows the evolution of the number of trees planted each year.</p>
+</blockquote>
+</section>
+<section id="identifying-the-most-common-species-provides-valuable-information-on-the-dominant-types-of-trees-in-san-francisco" class="level1">
+<h1>Identifying the most common species provides valuable information on the dominant types of trees in San Francisco</h1>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 192987 Columns: 12
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (6): legal_status, species, address, site_info, caretaker, plot_size
-dbl  (5): tree_id, site_order, dbh, latitude, longitude
-date (1): date
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="NM2207-Week9_Final_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function (x, y, ...) 
+UseMethod("plot")
+&lt;bytecode: 0x0000024add0b79c8&gt;
+&lt;environment: namespace:base&gt;</code></pre>
 </div>
-
-
+</div>
+<blockquote class="blockquote">
+<p>This graph, analyzing the most common tree species in San Francisco can provide insights into the health, resilience, and management of the urban forest, informing decisions on future planting initiatives and conservation efforts.</p>
+</blockquote>
+<section id="san-francisos-tree-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="san-francisos-tree-mapping">San Franciso’s Tree Mapping</h2>
+<iframe height="1200" width="200%" frameborder="no" align-items="center" src="https://18en4g-chua-chua.shinyapps.io/interactivegraph/">
+<iframe>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">designbysc</span> <span class="hidden" data-render-id="quarto-int-navbar-title">designbysc</span> <span class="hidden" data-render-id="quarto-int-navbar:Home">Home</span> <span class="hidden" data-render-id="quarto-int-navbar:/index.html">/index.html</span> <span class="hidden" data-render-id="quarto-int-navbar:About Me">About Me</span> <span class="hidden" data-render-id="quarto-int-navbar:/about.html">/about.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Wk9-Final">Wk9-Final</span> <span class="hidden" data-render-id="quarto-int-navbar:/NM2207-Week9_Final.html">/NM2207-Week9_Final.html</span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden" data-render-id="quarto-metatitle">designbysc - NM2207- Final Submission</span> <span class="hidden" data-render-id="quarto-twittercardtitle">designbysc - NM2207- Final Submission</span> <span class="hidden" data-render-id="quarto-ogcardtitle">designbysc - NM2207- Final Submission</span> <span class="hidden" data-render-id="quarto-metasitename">designbysc</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
+</div>
 </section>
 </section>
 
 </main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<script id = "quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -484,6 +445,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 </div> <!-- /content -->
 
+</body>
 
-
-</body></html>
+</html></iframe></section></section></main></div></body></html>

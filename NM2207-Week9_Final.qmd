@@ -10,9 +10,16 @@ Have you heard of **San Francisco Trees?!** Let **ME**.... **TELL YOU** more abo
 
 > According to studies on urban forestry and sustainability, the state of a city's tree population can significantly impact the environment, air quality, and overall well-being of its residents. For instance, research by the United Nations has shown that urban green spaces, including trees, are vital for mitigating climate change. This question is important because understanding how San Francisco's tree population has evolved is crucial for assessing the city's progress in environmental sustainability and urban planning, which has wide-reaching effects on residents' quality of life.
 
-## Dataset
+# Why is it important to address this question?
 
-```{r, eval=TRUE,echo=FALSE}
+> It is important to address this question because the condition and evolution of a city's tree population have direct implications for environmental sustainability, air quality, and residents' quality of life. Understanding these changes allows for informed urban planning, conservation efforts, and assessing progress toward climate and environmental goals.
+
+
+## Findings about San Francisco Trees
+
+# Graphs on the trees populations and planting efforts
+
+```{r, eval=TRUE,echo=FALSE,warning=FALSE,message=FALSE}
 
 library(tidyverse)
 library(ggmap)
@@ -96,22 +103,24 @@ p2 <- sf_trees %>%
         axis.title.x = element_blank())
 
 
-patchwork <- ( p1 / p2 )
+patchwork <- ( p1 | p2 )
 
-patchwork + plot_annotation(title = "San Francisco Trees",
-                            subtitle = "Evolution of the number of trees & species.",
+patchwork + plot_annotation(title = "Evolution of the number of trees & species",
                             theme = theme(plot.background = element_rect(fill = "white"),
                                         plot.title = element_text(color = "#555555", size = 18, hjust = 0.5),
                                         plot.subtitle = element_text(color = "#555555", size = 14, hjust = 0.5),
                                         plot.caption = element_text(color = "#555555", hjust = 1),
                                         panel.background = element_rect(fill = "white")))+
-            plot_layout(nrow = 2, heights = c(0.05, 5))
+            plot_layout(nrow = 2, heights = c(10, 10))
 
 
 ```
 
+> In graph above, the number of trees planted in San Francisco kept increasing from the [70's]{style="color:#feb24c"} to the end of the [90's]{style="color:#feb24c"}. This period showed an increase of the number of different species planted each year, with less than [50]{style="color:#00d400"} to about [150]{style="color:#00d400"}, with the maximum of [173 different species]{style="color:#00d400"} in [2008]{style="color:#feb24c"}, and [4388 trees planted]{style="color:#00d400"}. The top graph shows the evolution of the number of species planted each year, while the bottom one shows the evolution of the number of trees planted each year.
 
-```{r, eval=TRUE,echo=FALSE}
+# Identifying the most common species provides valuable information on the dominant types of trees in San Francisco
+
+```{r, eval=TRUE,echo=FALSE,warning=FALSE,message=FALSE}
 library(tidyverse)
 library(sf)
 
@@ -167,15 +176,24 @@ sf_trees %>%
   ) +
   facet_wrap( ~ common_name) +
   coord_sf() +
-  labs(title = "Where are San Francisco's trees?",
-       subtitle = "Showing the nine most common tree species") +
+  labs(title = "The nine most common tree species") +
   theme_void() +
   theme(
     plot.subtitle = element_text(margin = margin(b = 4, unit = "pt")),
     strip.text = element_text(size = 8, margin = margin(
-      t = 2, b = 2, unit = "pt"
+      t = 8, b = 8, unit = "pt"
     ))
   )
 
+dev.new(width=20, height=20, unit="in")
+plot
+
 ```
 
+> This graph, analyzing the most common tree species in San Francisco can provide insights into the health, resilience, and management of the urban forest, informing decisions on future planting initiatives and conservation efforts.
+
+## San Franciso's Tree Mapping
+
+<iframe height="1200" width="200%" frameborder="no" align-items="center" src="https://18en4g-chua-chua.shinyapps.io/interactivegraph/">
+
+<iframe>
